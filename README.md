@@ -79,7 +79,7 @@ included desktop-router config:
 | **Userland** | LuCI (SSL), `htop`, `iperf3`, `curl`, BBR |
 
 Toolchain and package pins live in
-[`devices/xiaomi_ax3600/config`](devices/xiaomi_ax3600/config).
+[`devices/linksys_mx4300/config`](devices/linksys_mx4300/config).
 
 ## Enable the rest in your fork
 
@@ -195,6 +195,7 @@ Issues and PRs welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Acknowledgements
 
+-**[https://github.com/JuliusBairaktaris/Qualcommax_NSS_Builder**
 - **[Ansuel (Christian Marangi)](https://github.com/Ansuel)** — the
   [EDMA rework](https://github.com/openwrt/openwrt/pull/22381) this stack builds on
 - **[qosmio](https://github.com/qosmio)** — NSS development, the
@@ -208,11 +209,8 @@ Issues and PRs welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 ## Support the project
 
 This is an unpaid, single-maintainer effort. If this work is useful to you,
-consider chipping in — it goes toward IPQ807x development and hardware to start
-looking into **IPQ50xx** and **IPQ60xx** next.
+consider chipping in
 
-- **[GitHub Sponsors](https://github.com/sponsors/JuliusBairaktaris)** — zero-fee, GitHub-native
-- **[PayPal](https://paypal.me/JuliusBairaktaris)** — one-off donations
 
 Thank you!
 
