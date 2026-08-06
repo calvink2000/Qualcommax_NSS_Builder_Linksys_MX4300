@@ -12,23 +12,39 @@ jobs:
         uses: actions/checkout@v5
         with:
           ref: main
-      - name: Sync GitHub Fork
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Sync GitHub Fork (safe)
         run: |
+          set -euxo pipefail
+
+          # Ensure we can (re)create the upstream remote safely
+          git remote remove upstream || true
           git remote add upstream https://github.com/JuliusBairaktaris/Qualcommax_NSS_Builder.git
-          git fetch upstream main
+
+          # Fetch full history, tags, and prune any stale refs
+          git fetch upstream --prune --tags
+
+          # Ensure we're on the branch we want to update
           git checkout main
-          # Force overwrite with Julius's latest code structure
-          git merge upstream/main --strategy-option theirs --no-edit || echo "Merging latest upstream code"
-          # Save Julius's newly updated README as a secondary documentation file
-          cp README.md JULIUS_README.md
-          # Re-apply your custom Linksys modifications to build.yaml automatically
-          sed -i 's/DEVICE_PROFILE: .*/DEVICE_PROFILE: linksys_mx4300/g' .github/workflows/build.yaml
-          sed -i 's/cron: .*/cron: "0 3 1,15 * *"/g' .github/workflows/build.yaml
-          # Completely overwrite the main README with your Linksys documentation
+
+          # Merge upstream/main preferring upstream changes when conflicts occur
+          git merge --no-edit -X theirs upstream/main || echo "No changes to merge"
+
+          # Backup upstream README and re-apply your local modifications
+          cp README.md JULIUS_README.md || true
+          sed -i 's/DEVICE_PROFILE: .*/DEVICE_PROFILE: linksys_mx4300/g' .github/workflows/build.yaml || true
+          sed -i 's/cron: .*/cron: "0 3 1,15 * *"/g' .github/workflows/build.yaml || true
           cp LINKSYS_README.md README.md
-          # Commit and push the updates back to your personal GitHub fork
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .github/workflows/build.yaml README.md JULIUS_README.md
-          git commit -m "Auto-sync from upstream, backup Julius README, lock in Linksys README" || echo "No changes to commit"
-          git push origin main
+
+          # Commit and push only if there are changes
+          git add .github/workflows/build.yaml README.md JULIUS_README.md || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-sync from upstream"
+            git push origin main
+          fi
