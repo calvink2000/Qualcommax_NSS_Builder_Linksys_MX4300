@@ -195,7 +195,7 @@ Issues and PRs welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Acknowledgements
 
--**[https://github.com/JuliusBairaktaris/Qualcommax_NSS_Builder**
+-**JuliusBairaktaris's Qualcommax_NSS_Builder** - https://github.com/JuliusBairaktaris/Qualcommax_NSS_Builder
 - **[Ansuel (Christian Marangi)](https://github.com/Ansuel)** — the
   [EDMA rework](https://github.com/openwrt/openwrt/pull/22381) this stack builds on
 - **[qosmio](https://github.com/qosmio)** — NSS development, the
