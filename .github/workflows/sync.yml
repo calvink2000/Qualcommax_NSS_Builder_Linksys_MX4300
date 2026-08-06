@@ -1,8 +1,8 @@
 name: Sync Fork Upstream
 on:
   schedule:
-    - cron: '0 2 * * *' # Checks for updates once every day at midnight
-  workflow_dispatch: # Allows you to manually trigger it via the Actions tab
+    - cron: '0 3 * * *'  # Checks for updates once every day at 3 AM UTC
+  workflow_dispatch:  # Allows you to manually trigger it via the Actions tab
 
 jobs:
   sync:
@@ -14,28 +14,21 @@ jobs:
           ref: main
       - name: Sync GitHub Fork
         run: |
-            git remote add upstream https://github.com
-            git fetch upstream main
-            git checkout main
-            
-            # Force overwrite with Julius's latest code structure
-            git merge upstream/main --strategy-option theirs --no-edit || echo "Merging latest upstream code"
-            
-            # Save Julius's newly updated README as a secondary documentation file
-            cp README.md JULIUS_README.md
-            
-            # Re-apply your custom Linksys modifications to build.yaml automatically
-            sed -i 's/DEVICE_PROFILE: .*/DEVICE_PROFILE: linksys_mx4300/g' .github/workflows/build.yaml
-            sed -i 's/cron: .*/cron: "0 3 1,15 * *"/g' .github/workflows/build.yaml
-            
-            # Completely overwrite the main README with your Linksys documentation
-            cp LINKSYS_README.md README.md
-            
-            # Commit and push the updates back to your personal GitHub fork
-            git config user.name "GitHub Actions"
-            git config user.email "actions@github.com"
-            git add .github/workflows/build.yaml README.md JULIUS_README.md
-            git commit -m "Auto-sync from upstream, backup Julius README, lock in Linksys README" || echo "No changes to commit"
-            git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git remote add upstream https://github.com
+          git fetch upstream main
+          git checkout main
+          # Force overwrite with Julius's latest code structure
+          git merge upstream/main --strategy-option theirs --no-edit || echo "Merging latest upstream code"
+          # Save Julius's newly updated README as a secondary documentation file
+          cp README.md JULIUS_README.md
+          # Re-apply your custom Linksys modifications to build.yaml automatically
+          sed -i 's/DEVICE_PROFILE: .*/DEVICE_PROFILE: linksys_mx4300/g' .github/workflows/build.yaml
+          sed -i 's/cron: .*/cron: "0 3 1,15 * *"/g' .github/workflows/build.yaml
+          # Completely overwrite the main README with your Linksys documentation
+          cp LINKSYS_README.md README.md
+          # Commit and push the updates back to your personal GitHub fork
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .github/workflows/build.yaml README.md JULIUS_README.md
+          git commit -m "Auto-sync from upstream, backup Julius README, lock in Linksys README" || echo "No changes to commit"
+          git push origin main
