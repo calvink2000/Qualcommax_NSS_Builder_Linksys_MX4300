@@ -64,6 +64,26 @@ CONFIG_PACKAGE_libustream-openssl=y
 CONFIG_PACKAGE_luci-ssl-openssl=y
 CONFIG_PACKAGE_luci-app-bcp38=y
 
+## Seamless Mesh and Roaming Enhancements
+CONFIG_PACKAGE_luci-app-uugamebooster=n
+CONFIG_PACKAGE_luci-app-wol=n
+
+# High-Performance Mesh Security and Discovery Protocols
+CONFIG_PACKAGE_ieee8021x=y
+CONFIG_PACKAGE_kmod-crypto-gcm=y
+CONFIG_PACKAGE_kmod-crypto-ccm=y
+CONFIG_PACKAGE_luci-app-opkg=y
+
+# Centralized Mesh & Roaming Utilities
+CONFIG_PACKAGE_usteer=y
+CONFIG_PACKAGE_luci-app-usteer=y
+CONFIG_PACKAGE_dawn=n
+
+# Layer 2 Mesh Routing (802.11s)
+CONFIG_ATH11K_NSS_MESH_SUPPORT=y
+CONFIG_PACKAGE_kmod-batman-adv=y
+CONFIG_PACKAGE_luci-app-batman-adv=y
+
 ## Additional Packages and Utilities
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_htop=y
@@ -75,13 +95,30 @@ CONFIG_PACKAGE_luci=y
 CONFIG_PACKAGE_luci-app-firewall=y
 CONFIG_PACKAGE_wpad-openssl=y
 
+##SMB Server
+CONFIG_PACKAGE_luci-app-ksmbd=y
+CONFIG_PACKAGE_ksmbd-server=y
+CONFIG_PACKAGE_ksmbd-utils=y
+CONFIG_PACKAGE_wsdd2=y
+
+# USB and Storage Drivers
+CONFIG_PACKAGE_kmod-usb-core=y
+CONFIG_PACKAGE_kmod-usb-dwc3=y
+CONFIG_PACKAGE_kmod-usb-dwc3-qcom=y
+CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
+CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-uas=y
+CONFIG_PACKAGE_block-mount=y
+
+# Common File Systems (EXT4, exFAT, and NTFS)
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_kmod-fs-exfat=y
+CONFIG_PACKAGE_ntfs-3g=y
+
 ## Redundant Default Packages
 CONFIG_PACKAGE_kmod-phy-aquantia=n
-CONFIG_PACKAGE_kmod-usb-core=n
-CONFIG_PACKAGE_kmod-usb-dwc3=n
-CONFIG_PACKAGE_kmod-usb-dwc3-qcom=n
-CONFIG_PACKAGE_kmod-usb-xhci-hcd=n
-CONFIG_PACKAGE_kmod-usb3=n
+
 CONFIG_PACKAGE_wpad-basic-mbedtls=n
 CONFIG_PACKAGE_luci-app-attendedsysupgrade=n
 CONFIG_PACKAGE_attendedsysupgrade-common=n
@@ -115,8 +152,8 @@ CONFIG_KERNEL_IPV6_MROUTE=y
 ## multicast source. See docs/CUSTOMIZE.md.
 # CONFIG_PACKAGE_igmpproxy is not set
 CONFIG_NSS_FIRMWARE_VERSION_12_5=y
-# AX3600 = 512MB RAM: NSS MEDIUM memory profile (HIGH is the ipq807x default and wrong here)
-CONFIG_NSS_MEM_PROFILE_MEDIUM=y
+# Linksys MX4300 = 2GB RAM: Enable full NSS HIGH memory profile
+CONFIG_NSS_MEM_PROFILE_HIGH=y
 
 ## ath11k NSS Wi-Fi offload (wifili). Boots host-mode (nss_offload=0,
 ## frame_mode=2); /usr/sbin/nss-up moves the radios onto the NSS data path.
