@@ -1,14 +1,13 @@
 # Qualcommax NSS Builder
 
-### OpenWrt image builder for the Xiaomi AX3600 — NSS hardware offload on the upstream EDMA drivers
+### OpenWrt image builder for the Linksys MX4300 — NSS hardware offload on the upstream EDMA drivers
 
 [![Build](https://img.shields.io/github/actions/workflow/status/JuliusBairaktaris/Qualcommax_NSS_Builder/build.yml?branch=main&style=flat-square&logo=github&label=Build)](https://github.com/JuliusBairaktaris/Qualcommax_NSS_Builder/actions/workflows/build.yml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/JuliusBairaktaris/Qualcommax_NSS_Builder/lint.yml?branch=main&style=flat-square&logo=github&label=Lint)](https://github.com/JuliusBairaktaris/Qualcommax_NSS_Builder/actions/workflows/lint.yml)
 [![License](https://img.shields.io/github/license/JuliusBairaktaris/Qualcommax_NSS_Builder?style=flat-square&label=License)](LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/JuliusBairaktaris/Qualcommax_NSS_Builder?style=flat-square&label=Last%20Commit)](https://github.com/JuliusBairaktaris/Qualcommax_NSS_Builder/commits/main)
 
-A GitHub Actions pipeline that builds one OpenWrt image for the **Xiaomi
-AX3600**: Qualcomm NSS hardware offload running on OpenWrt main's **upstream
+A GitHub Actions pipeline that builds one OpenWrt image for the **Linksys MX4300**: Qualcomm NSS hardware offload running on OpenWrt main's **upstream
 `qca_edma` / `qca_ppe` ethernet drivers**
 ([PR #22381](https://github.com/openwrt/openwrt/pull/22381)) — not the vendor
 `qca-nss-dp` / `qca-ssdk` stack every other NSS build uses. Built from
